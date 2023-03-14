@@ -30,3 +30,46 @@ print("\nPreços:")
 print(precos)
 print("\nDatas de lançamento:")
 print(datasLancamento)
+
+links = driver.find_elements(By.CLASS_NAME, "paginatenum")
+for link in links[1:]:
+    link.find_element(By.TAG_NAME, "a").click()
+    time.sleep(3)
+
+    infosLista = driver.find_elements(By.CLASS_NAME, "context-game")
+    nomesLista = driver.find_elements(By.XPATH, "//a[@class='gameDivLink']")
+    for nome in nomesLista:
+        nomes.append(nome.get_attribute("data-clickname"))
+
+
+    for info in infosLista:
+        classificacoes.append(info.get_attribute("data-rating"))
+        precos.append(info.get_attribute("data-listprice"))
+        datasLancamento.append(info.get_attribute("data-releasedate"))
+
+    print("Nomes:")
+    print(nomes)
+    print("\nClassificações:")
+    print(classificacoes)
+    print("\nPreços:")
+    print(precos)
+    print("\nDatas de lançamento:")
+    print(datasLancamento)
+    
+    
+driver.quit()
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
