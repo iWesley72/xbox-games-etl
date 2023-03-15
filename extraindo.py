@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
+import pandas as pd
+import numpy as np
 
 driver = webdriver.Chrome()
 driver.get("https://www.xbox.com/pt-BR/games/all-games")
@@ -58,7 +60,9 @@ for link in links[1:]:
     
     
 driver.quit()
-    
+
+df = pd.DataFrame({'NOME':nomes, 'DATA_LANCAMENTO':datasLancamento, 'CLASSIFICACAO':classificacoes, 'PRECO':precos})
+df.to_csv('dados.csv', sep=';')
 
 
 
