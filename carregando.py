@@ -14,8 +14,8 @@ classificacoes = df['CLASSIFICACAO'].unique()
 
 try:
     connection = psycopg2.connect(
-        user='wesley',
-        password='admar77mara77',
+        user='inserir_usuario',
+        password='inserir_senha',
         host='127.0.0.1',
         port='5432',
         database='xboxgamelist'
