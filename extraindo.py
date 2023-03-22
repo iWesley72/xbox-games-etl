@@ -61,7 +61,7 @@ for link in links[1:]:
     
 driver.quit()
 
-df = pd.DataFrame({'NOME':nomes, 'DATA_LANCAMENTO':datasLancamento, 'CLASSIFICACAO':classificacoes, 'PRECO':precos})
+df = pd.DataFrame({'nome':nomes, 'data_lancamento':datasLancamento, 'classificacao':classificacoes, 'preco':precos})
 df.to_csv('dados.csv', sep=';')
 
 

@@ -6,16 +6,17 @@
 import pandas as pd
 import numpy as np
 import psycopg2
+import csv
 
 
 df = pd.read_csv('dadosTratado.csv', sep=';')
-classificacoes = df['CLASSIFICACAO'].unique()
+classificacoes = df['classificacao'].unique()
 
 
 try:
     connection = psycopg2.connect(
-        user='inserir_usuario',
-        password='inserir_senha',
+        user='wesley',
+        password='admar77mara77',
         host='127.0.0.1',
         port='5432',
         database='xboxgamelist'
@@ -53,10 +54,19 @@ try:
     END;
     $$
     """
-    for i in df['NOME']:
+    for i in df['nome']:
         cursor.execute(query, (i, i, ))
         connection.commit()
     print('Dados inseridos com sucesso na tabela dim_jogo.')
+
+    """
+        O bloco a seguir popula a tabela fato fat_lista
+    """
+    with open('dadosTratado.csv') as csvFile:
+        next(csvFile)
+        cursor.copy_from(csvFile, 'fat_lista', sep=';', null='')
+        connection.commit()
+
 
 except (Exception, psycopg2.Error) as error:
     print("Erro ao inserir dados na tabela", error)
