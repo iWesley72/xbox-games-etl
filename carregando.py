@@ -6,7 +6,7 @@
 import pandas as pd
 import numpy as np
 import psycopg2
-import csv
+
 
 
 df = pd.read_csv('dadosTratado.csv', sep=';')
@@ -15,8 +15,8 @@ classificacoes = df['classificacao'].unique()
 
 try:
     connection = psycopg2.connect(
-        user='wesley',
-        password='admar77mara77',
+        user='usuario',
+        password='senha',
         host='127.0.0.1',
         port='5432',
         database='xboxgamelist'
